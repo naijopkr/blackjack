@@ -8,4 +8,4 @@ class Card():
         self.value = values.get(name)
 
     def __str__(self):
-        return f'{self.name}{self.suit}'
+        return f'{self.name} {self.suit}'

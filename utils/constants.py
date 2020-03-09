@@ -20,3 +20,8 @@ suits = {
     "spades": '♠',
     "clubs": '♣'
 }
+
+PLAYER_TYPES = {
+    'human': 0,
+    'computer': 1
+}
