@@ -29,6 +29,7 @@ while(True):
     hit = input('\n\nDo you want another card? (YES/no)')
 
     if (hit.upper() == 'NO'):
+        player.check_status()
         break
 
     player.add_card(deck.draw_card(1).pop())
@@ -38,10 +39,16 @@ while(True):
         break
 
 if (player.status == 1):
-    print('BLACKJACK!!! YOU WIN!!')
+    clear()
+    player.show_hand()
+    print(f'SCORE: {player.get_score()}')
+    print('\n\nBLACKJACK!!! YOU WIN!!')
     input()
 elif (player.status == -1):
-    print('BURST!!! YOU LOST!!')
+    clear()
+    player.show_hand()
+    print(f'SCORE: {player.get_score()}')
+    print('\n\nBURST!!! YOU LOST!!')
     input()
 else:
     while (dealer.get_score() < 21):
