@@ -1,12 +1,16 @@
 from Classes.Hand import Hand
+from Classes.Bankroll import Bankroll
 
 class Player():
 
-    def __init__(self, name, playerType, cards):
+    def __init__(self, name, playerType):
         self.name = name
         self.playerType = playerType
-        self.hand = Hand(cards)
+        self.bankroll = Bankroll(self, 500)
         self.status = 0
+
+    def init_hand(self, cards):
+        self.hand = Hand(cards)
 
     def show_hand(self, show_down = False):
         if self.playerType == 0 or show_down:
@@ -14,7 +18,6 @@ class Player():
                 print(card)
         else:
             print(self.hand.cards[0])
-
 
     def add_card(self, card):
         self.hand.add_card(card)
