@@ -37,6 +37,10 @@ class Deck():
         self.deck = shuffled_deck
     
     def draw_card(self, how_many):
+        if len(self.deck) == 0:
+            self.__init__()
+            self.shuffle()
+
         cards = []
         for _ in range(how_many):
             cards.append(self.deck.pop())

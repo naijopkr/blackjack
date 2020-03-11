@@ -25,7 +25,6 @@ class Round():
         self.dealer.init_hand(self.deck.draw_card(2))
 
     def show_hand(self, showdown = False):
-        clear()
         print('YOUR CARDS:')
         self.player.show_hand()
         print(f'SCORE: {self.player.get_score()}')
@@ -39,16 +38,24 @@ class Round():
 
     def check_burst_blackjack(self):
         if self.player.status == 1:
+            clear()
             self.player.bankroll.add_funds(self.pot)
-            self.show_hand(True)
             print('BLACKJACK!!! YOU WIN!!')
+            print()
+            print('YOUR CARDS:')
+            self.player.show_hand(True)
+            print(f'SCORE: {self.player.get_score()}')
             print()
             print(self.player.bankroll)
             input()
             return True
         elif (self.player.status == -1):
-            self.player.show_hand(True)
+            clear()
             print('BURST!!! YOU LOST!!')
+            print()
+            print('YOUR CARDS:')
+            self.player.show_hand(True)
+            print(f'SCORE: {self.player.get_score()}')
             print()
             print(self.player.bankroll)
             input()
@@ -57,6 +64,7 @@ class Round():
         return False
 
     def showdown(self):
+        clear()
         print('SHOWDOWN')
         self.show_hand(True)
         
@@ -70,11 +78,18 @@ class Round():
             print('YOU LOST!')
                 
         print(self.player.bankroll)
+        
+    def play_again(self):
         return input('Wanna play again? (YES/no): ')
 
 
     def player_round(self):
         while True:
+            self.player.check_status()
+            if (self.player.status != 0):
+                break
+
+            clear()
             self.show_hand()
 
             hit = input('Do you want another card? (YES/no)')
@@ -84,14 +99,11 @@ class Round():
                 break
 
             self.player.add_card(self.deck.draw_card(1).pop())
-            self.player.check_status()
-            
-            if (self.player.status != 0):
-                break
 
 
     def computer_round(self):
         while self.dealer.get_score() < 21:
+            clear()
             self.show_hand(True)
             input('Press any key...')
 

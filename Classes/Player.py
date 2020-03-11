@@ -31,3 +31,5 @@ class Player():
             self.status = -1
         elif (score == 21):
             self.status = 1
+        else:
+            self.status = 0
