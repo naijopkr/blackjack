@@ -1,8 +1,8 @@
-from Classes.Deck import Deck
-from Classes.Player import Player
+from classes.deck import Deck
+from classes.player import Player
 
 from utils.constants import PLAYER_TYPES
-from utils.utilFunctions import clear
+from utils.util_functions import clear
 
 class Round():
 
@@ -12,8 +12,8 @@ class Round():
 
     # Dealer setup
     dealer = Player(
-        'Dealer', 
-        PLAYER_TYPES.get('computer'), 
+        'Dealer',
+        PLAYER_TYPES.get('computer'),
     )
 
     def __init__(self, pot, player):
@@ -24,7 +24,9 @@ class Round():
         self.player.init_hand(self.deck.draw_card(2))
         self.dealer.init_hand(self.deck.draw_card(2))
 
-    def show_hand(self, showdown = False):
+    def show_hand(self, showdown=False):
+        """ Shows player and dealer hands """
+
         print('YOUR CARDS:')
         self.player.show_hand()
         print(f'SCORE: {self.player.get_score()}')
@@ -37,6 +39,8 @@ class Round():
         print()
 
     def check_burst_blackjack(self):
+        """ Checks player's hand for blackjack or burst """
+
         if self.player.status == 1:
             clear()
             self.player.bankroll.add_funds(self.pot)
@@ -49,7 +53,8 @@ class Round():
             print(self.player.bankroll)
             input()
             return True
-        elif (self.player.status == -1):
+
+        if self.player.status == -1:
             clear()
             print('BURST!!! YOU LOST!!')
             print()
@@ -64,29 +69,29 @@ class Round():
         return False
 
     def showdown(self):
+        """ Shows final hands, scores and result (win/lose) """
+
         clear()
         print('SHOWDOWN')
         self.show_hand(True)
-        
+
         dealer_burst = self.dealer.get_score() > 21
         dealer_lose = self.player.get_score() >= self.dealer.get_score()
-        
+
         if dealer_burst or dealer_lose:
             self.player.bankroll.add_funds(self.pot)
             print('YOU WON!')
         else:
             print('YOU LOST!')
-                
-        print(self.player.bankroll)
-        
-    def play_again(self):
-        return input('Wanna play again? (YES/no): ')
 
+        print(self.player.bankroll)
 
     def player_round(self):
+        """ Starts player round """
+
         while True:
             self.player.check_status()
-            if (self.player.status != 0):
+            if self.player.status != 0:
                 break
 
             clear()
@@ -94,7 +99,7 @@ class Round():
 
             hit = input('Do you want another card? (YES/no)')
 
-            if (hit.upper() == 'NO'):
+            if hit.upper() == 'NO':
                 self.player.check_status()
                 break
 
@@ -102,12 +107,14 @@ class Round():
 
 
     def computer_round(self):
+        """ Starts computer round """
+
         while self.dealer.get_score() < 21:
             clear()
             self.show_hand(True)
             input('Press any key...')
 
-            if (self.dealer.get_score() > self.player.get_score()):
+            if self.dealer.get_score() > self.player.get_score():
                 break
-            else:
-                self.dealer.add_card(self.deck.draw_card(1).pop())
+
+            self.dealer.add_card(self.deck.draw_card(1).pop())

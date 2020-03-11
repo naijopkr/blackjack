@@ -8,6 +8,8 @@ class Bankroll():
         return f'{self.owner.name}: ${self.balance}'
 
     def bet(self, amount):
+        """ Removes bet value from balance """
+
         if (amount <= 0 or amount > self.balance):
             print('Invalid bet! Try again!')
             raise ValueError
@@ -16,7 +18,9 @@ class Bankroll():
         return amount
 
     def add_funds(self, amount):
-        if (amount <= 0):
+        """ Adds funds to balance """
+
+        if amount <= 0:
             print('Invalid amount! Try again!')
             return False
 
@@ -24,6 +28,7 @@ class Bankroll():
         return True
 
     def make_bet(self):
+        """ Asks for user input to make bet """
         player_bet = 0
         while True:
             try:
@@ -32,12 +37,13 @@ class Bankroll():
                 )
             except:
                 print('Invalid value for a bet. Try again!')
-            else: 
+            else:
                 break
 
         return player_bet
 
     def make_deposit(self):
+        """ Asks for user input to add funds """
         while True:
             try:
                 deposit = int(
@@ -45,7 +51,7 @@ class Bankroll():
                         'Enter the amount you want to deposit: '
                     )
                 )
-                if (deposit <= 0):
+                if deposit <= 0:
                     raise ValueError
 
                 self.add_funds(deposit)
@@ -53,6 +59,5 @@ class Bankroll():
                 input()
             except:
                 print('Invalid value for a deposit. Try again!')
-            else: 
+            else:
                 break
-                

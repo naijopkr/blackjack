@@ -1,4 +1,4 @@
-values = {
+VALUES = {
     "two": 2,
     "three": 3,
     "four": 4,
@@ -14,7 +14,7 @@ values = {
     "ace": 11
 }
 
-suits = {
+DECK_SUITS = {
     "hearts": '♥',
     "diamonds": '♦',
     "spades": '♠',

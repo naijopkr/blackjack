@@ -1,11 +1,10 @@
-from sys import exit, platform
+from sys import platform
 from os import system
 
 def clear():
+    """ Clears console """
+
     if platform == 'win32':
         system('cls')
     else:
         system('clear')
-
-def exit_game():
-    exit(0)

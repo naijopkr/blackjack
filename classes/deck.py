@@ -1,17 +1,21 @@
 import random
-from Classes.Card import Card
-from utils.constants import values, suits
+from utils.constants import VALUES, DECK_SUITS
 
-cards = values.keys()
-suits = suits.keys()
+CARDS = VALUES.keys()
+SUITS = DECK_SUITS.keys()
 
 class Deck():
 
     def __init__(self):
         self.deck_template = set()
-        for suit in suits:
-            for card in cards:
-                self.deck_template.add(Card(suit, card))
+        for suit in SUITS:
+            for card in CARDS:
+                new_card = {
+                    "suit": DECK_SUITS.get(suit),
+                    "name": card,
+                    "value": VALUES.get(card),
+                }
+                self.deck_template.add(new_card)
 
         self.deck = list(self.deck_template)
 
@@ -26,6 +30,8 @@ class Deck():
         return len(self.deck)
 
     def shuffle(self):
+        """ Shuffled deck set """
+
         shuffled_deck = []
         i = 0
         while i < len(self.deck_template):
@@ -35,8 +41,14 @@ class Deck():
             i += 1
 
         self.deck = shuffled_deck
-    
+
     def draw_card(self, how_many):
+        """
+        Draw cards from deck
+
+        Arguments:
+        int: Number of cards to draw from deck
+        """
         if len(self.deck) == 0:
             self.__init__()
             self.shuffle()
@@ -46,4 +58,3 @@ class Deck():
             cards.append(self.deck.pop())
 
         return cards
-

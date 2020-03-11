@@ -1,15 +1,15 @@
 """ Main module """
-from Classes.Player import Player
-from Classes.Round import Round
+from classes.Player import Player
+from classes.Round import Round
 from utils.constants import PLAYER_TYPES
-from utils.utilFunctions import clear
+from utils.util_functions import clear
 
 def player_setup():
     """
     Player setup.
 
     Returns:
-        Classes.Player: User's player.
+        classes.Player: User's player.
 
     """
     clear()
@@ -46,7 +46,7 @@ def start_game():
             game_round.computer_round()
             game_round.showdown()
 
-        game_on = game_round.play_again().upper() != 'NO'
+        game_on = input('Wanna play again? (YES/no): ').upper() != 'NO'
         clear()
 
 if __name__ == '__main__':
