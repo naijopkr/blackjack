@@ -1,6 +1,6 @@
 """ Main module """
-from classes.Player import Player
-from classes.Round import Round
+from classes.player import Player
+from classes.round import Round
 from utils.constants import PLAYER_TYPES
 from utils.util_functions import clear
 
@@ -9,7 +9,7 @@ def player_setup():
     Player setup.
 
     Returns:
-        classes.Player: User's player.
+        classes.player: User's player.
 
     """
     clear()

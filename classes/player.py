@@ -20,9 +20,10 @@ class Player():
 
         if self.player_type == 0 or show_down:
             for card in self.hand.cards:
-                print(card)
+                print(f'{card.name} {card.suit}')
         else:
-            print(self.hand.cards[0])
+            dealer_card = self.hand.cards[0]
+            print(f'{dealer_card.name} {dealer_card.suit}')
 
     def add_card(self, card):
         """ Adds card to hand """

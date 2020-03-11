@@ -1,3 +1,4 @@
+import collections
 import random
 from utils.constants import VALUES, DECK_SUITS
 
@@ -6,15 +7,17 @@ SUITS = DECK_SUITS.keys()
 
 class Deck():
 
+    Card = collections.namedtuple('Card', 'suit name value')
+
     def __init__(self):
         self.deck_template = set()
         for suit in SUITS:
             for card in CARDS:
-                new_card = {
-                    "suit": DECK_SUITS.get(suit),
-                    "name": card,
-                    "value": VALUES.get(card),
-                }
+                new_card = Deck.Card(
+                    suit=DECK_SUITS.get(suit),
+                    name=card,
+                    value=VALUES.get(card)
+                )
                 self.deck_template.add(new_card)
 
         self.deck = list(self.deck_template)
