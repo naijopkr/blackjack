@@ -33,17 +33,8 @@ class Deck():
         return len(self.deck)
 
     def shuffle(self):
-        """ Shuffled deck set """
-
-        shuffled_deck = []
-        i = 0
-        while i < len(self.deck_template):
-            new_index = random.randint(0, len(self.deck) - 1)
-            card = self.deck.pop(new_index)
-            shuffled_deck.append(card)
-            i += 1
-
-        self.deck = shuffled_deck
+        """ Shuffles deck set """
+        random.shuffle(self.deck)
 
     def draw_card(self, how_many):
         """
