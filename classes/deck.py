@@ -43,12 +43,12 @@ class Deck():
         Arguments:
         int: Number of cards to draw from deck
         """
-        if len(self.deck) == 0:
-            self.__init__()
-            self.shuffle()
-
         cards = []
         for _ in range(how_many):
+            if len(self.deck) == 0:
+                self.__init__()
+                self.shuffle()
+
             cards.append(self.deck.pop())
 
         return cards

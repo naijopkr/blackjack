@@ -12,12 +12,9 @@ class Hand():
             if card.value == 11:
                 total_aces += 1
 
-        if total_aces > 0:
-            for _i in range(total_aces):
-                if hand_sum > 21:
-                    hand_sum = hand_sum - 10
-                else:
-                    break
+        while hand_sum > 21 and total_aces:
+            hand_sum -= 10
+            total_aces -= 1
 
         return hand_sum
 
