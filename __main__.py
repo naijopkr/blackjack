@@ -41,7 +41,7 @@ def start_game():
 
         game_round = Round(player_bet * 2, player)
         game_round.player_round()
-        end_game = game_round.check_burst_blackjack()
+        end_game = game_round.check_bust_blackjack()
         if not end_game:
             game_round.computer_round()
             game_round.showdown()

@@ -40,7 +40,7 @@ class Player():
         Check player status
 
         Blackjack: 1
-        Burst: -1
+        Bust: -1
         Other: 0
         """
 

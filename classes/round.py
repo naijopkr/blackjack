@@ -38,8 +38,8 @@ class Round():
             print(f'SCORE: {self.dealer.get_score()}')
         print()
 
-    def check_burst_blackjack(self):
-        """ Checks player's hand for blackjack or burst """
+    def check_bust_blackjack(self):
+        """ Checks player's hand for blackjack or bust """
 
         if self.player.status == 1:
             clear()
@@ -56,7 +56,7 @@ class Round():
 
         if self.player.status == -1:
             clear()
-            print('BURST!!! YOU LOST!!')
+            print('BUST!!! YOU LOST!!')
             print()
             print('YOUR CARDS:')
             self.player.show_hand(True)
@@ -75,10 +75,10 @@ class Round():
         print('SHOWDOWN')
         self.show_hand(True)
 
-        dealer_burst = self.dealer.get_score() > 21
+        dealer_bust = self.dealer.get_score() > 21
         dealer_lose = self.player.get_score() >= self.dealer.get_score()
 
-        if dealer_burst or dealer_lose:
+        if dealer_bust or dealer_lose:
             self.player.bankroll.add_funds(self.pot)
             print('YOU WON!')
         else:
